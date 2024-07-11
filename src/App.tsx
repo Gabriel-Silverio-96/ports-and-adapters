@@ -1,11 +1,13 @@
 import { useEffect } from "react";
-import ApiAdapter from "./shared/adapters/api/api-adapter";
+import { useApi } from "./shared/hooks/useApi";
 
 function App() {
+  const api = useApi();
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await ApiAdapter.get({ endpoint: "/todos" });
+        const response = await api.get({ endpoint: "/todos" });
         console.log(response);
       } catch (error) {
         console.error("GET TODOS ", error);
