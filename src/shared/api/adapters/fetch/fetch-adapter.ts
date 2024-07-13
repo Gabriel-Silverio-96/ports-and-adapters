@@ -1,9 +1,9 @@
 import { API } from "../../../../app.constants";
-import { Get, GetReponse } from "../../types/api-adapter.types";
+import { Get, HttpClientResponse } from "../../types/api-adapter.types";
 import FetchErrorHandler from "./utils/fetch-error-handler";
 
 class FetchAdapter {
-  async get<T>({ endpoint }: Get): Promise<GetReponse<T>> {
+  async get<T>({ endpoint }: Get): Promise<HttpClientResponse<T>> {
     const response = await fetch(`${API.BASE_URL}${endpoint}`, {
       method: "GET",
     });

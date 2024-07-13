@@ -3,6 +3,6 @@ export interface Get {
   headers?: unknown;
 }
 
-export interface GetReponse<T> {
+export interface HttpClientResponse<T> {
   data: T;
 }
