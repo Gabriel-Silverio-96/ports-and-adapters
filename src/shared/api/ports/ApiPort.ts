@@ -1,14 +1,20 @@
-import { HttpClientResponse } from "../types/ApiAdapter.types";
+import {
+  HttpClientConfig,
+  HttpClientResponse,
+} from "../types/ApiAdapter.types";
 import { HttpClient } from "./types";
 
 export default class ApiPort implements HttpClient {
-  port: HttpClient;
-  constructor(port: HttpClient) {
-    this.port = port;
+  adapter: HttpClient;
+  constructor(adapter: HttpClient) {
+    this.adapter = adapter;
   }
 
-  async get<T>(endpoint: string): Promise<HttpClientResponse<T>> {
-    const { data } = await this.port.get<T>(endpoint);
+  async get<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D>
+  ): Promise<HttpClientResponse<T>> {
+    const { data } = await this.adapter.get<T, D>(endpoint, config || {});
 
     return { data };
   }
