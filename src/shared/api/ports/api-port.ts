@@ -7,8 +7,8 @@ class ApiPort implements HttpClient {
     this.port = port;
   }
 
-  async get({ endpoint }: Get): Promise<GetReponse> {
-    const { data } = await this.port.get({ endpoint });
+  async get<T>({ endpoint }: Get): Promise<GetReponse<T>> {
+    const { data } = await this.port.get<T>({ endpoint });
 
     return { data };
   }
