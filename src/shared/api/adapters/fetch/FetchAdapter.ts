@@ -1,11 +1,18 @@
 import { API } from "../../../../app.constants";
-import { HttpClientResponse } from "../../types/ApiAdapter.types";
+import {
+  HttpClientConfig,
+  HttpClientResponse,
+} from "../../types/ApiAdapter.types";
 import FetchErrorHandler from "./utils/fetch-error-handler";
 
 export default class FetchAdapter {
-  async get<T>(endpoint: string): Promise<HttpClientResponse<T>> {
+  async get<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D>
+  ): Promise<HttpClientResponse<T>> {
     const response = await fetch(`${API.BASE_URL}${endpoint}`, {
       method: "GET",
+      ...config,
     });
 
     FetchErrorHandler.ResponseError(response);
