@@ -1,7 +1,7 @@
-import { HttpClientResponse } from "../types/api-adapter.types";
-import { HttpClient } from "./http-client";
+import { HttpClientResponse } from "../types/ApiAdapter.types";
+import { HttpClient } from "./types";
 
-class ApiPort implements HttpClient {
+export default class ApiPort implements HttpClient {
   port: HttpClient;
   constructor(port: HttpClient) {
     this.port = port;
@@ -13,5 +13,3 @@ class ApiPort implements HttpClient {
     return { data };
   }
 }
-
-export default ApiPort;
