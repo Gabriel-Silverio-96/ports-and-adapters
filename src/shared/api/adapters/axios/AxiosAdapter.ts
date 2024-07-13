@@ -1,5 +1,5 @@
-import { HttpClientConfig, HttpClientResponse } from "../../types";
-import AxiosInstance from "./config/AxiosInstance";
+import { HttpClientConfig, HttpClientResponse } from "src/shared/api/types";
+import AxiosInstance from "src/shared/api/adapters/axios/config/AxiosInstance";
 
 /**
  * Provides methods to make HTTP requests using Axios.
