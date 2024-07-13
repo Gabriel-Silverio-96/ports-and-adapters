@@ -7,7 +7,7 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get({ endpoint: "/todos" });
+        const response = await api.get("/todos");
         console.log(response);
       } catch (error) {
         console.error("GET TODOS ", error);
