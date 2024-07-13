@@ -1,1 +1,1 @@
-export { default } from "./axios-adapter";
+export { default } from "./AxiosAdapter";

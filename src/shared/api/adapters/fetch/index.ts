@@ -1,1 +1,1 @@
-export { default } from "./fetch-adapter";
+export { default } from "./FetchAdapter";
