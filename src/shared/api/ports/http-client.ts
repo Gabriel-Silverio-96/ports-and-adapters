@@ -1,5 +1,5 @@
-import { Get, GetReponse } from "../types/api-adapter.types";
+import { HttpClientResponse } from "../types/api-adapter.types";
 
 export interface HttpClient {
-  get({ endpoint }: Get): Promise<GetReponse>;
+  get<T>(endpoint: string): Promise<HttpClientResponse<T>>;
 }
