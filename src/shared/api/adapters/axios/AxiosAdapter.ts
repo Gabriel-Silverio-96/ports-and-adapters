@@ -1,4 +1,4 @@
-import axios from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import AxiosInstance from "src/shared/api/adapters/axios/config/AxiosInstance";
 import { HttpClientConfig, HttpClientResponse } from "src/shared/api/types";
 import HttpError from "src/shared/api/utils/HttpError";
@@ -24,12 +24,12 @@ export default class AxiosAdapter {
       const { data } = await AxiosInstance.get(endpoint, { ...config });
 
       return { data };
-    } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        throw new HttpError({ status: error.response.status });
-      }
+    } catch (e) {
+      // IsAxiosError is not used to reduce the complexity of tests
+      const error = e as AxiosError;
+      const { status } = error.response as AxiosResponse;
 
-      throw error;
+      throw new HttpError({ status: status });
     }
   }
 }
