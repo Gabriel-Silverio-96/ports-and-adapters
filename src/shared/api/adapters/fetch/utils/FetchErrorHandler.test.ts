@@ -17,5 +17,6 @@ describe("FetchErrorHandler", () => {
     const result = () => FetchErrorHandler.ResponseError(response);
 
     expect(result).not.toThrow();
+    expect(result).not.toThrowError();
   });
 });
