@@ -51,11 +51,12 @@ describe("AxiosAdapter", () => {
 
   it("should handle errors", async () => {
     const endpoint = "/path";
-    const message = "Network Error";
 
-    mockedAxios.get.mockRejectedValue(new Error(message));
+    mockedAxios.get.mockRejectedValue({ response: { status: 500 } });
     const response = async () => await adapter.get(endpoint);
 
-    expect(response).rejects.toThrow(message);
+    const expected = { status: 500, message: "An error has occurred: 500" };
+
+    expect(response).rejects.toThrowError(expect.objectContaining(expected));
   });
 });

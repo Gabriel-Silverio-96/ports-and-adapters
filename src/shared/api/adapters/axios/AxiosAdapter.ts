@@ -1,5 +1,7 @@
-import { HttpClientConfig, HttpClientResponse } from "src/shared/api/types";
+import { AxiosError, AxiosResponse } from "axios";
 import AxiosInstance from "src/shared/api/adapters/axios/config/AxiosInstance";
+import { HttpClientConfig, HttpClientResponse } from "src/shared/api/types";
+import HttpError from "src/shared/api/utils/HttpError";
 
 /**
  * Provides methods to make HTTP requests using Axios.
@@ -18,6 +20,16 @@ export default class AxiosAdapter {
     endpoint: string,
     config?: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>> {
-    return await AxiosInstance.get(endpoint, { ...config });
+    try {
+      const { data } = await AxiosInstance.get(endpoint, { ...config });
+
+      return { data };
+    } catch (e) {
+      // IsAxiosError is not used to reduce the complexity of tests
+      const error = e as AxiosError;
+      const { status } = error.response as AxiosResponse;
+
+      throw new HttpError({ status: status });
+    }
   }
 }
