@@ -1,9 +1,9 @@
-import { API } from "../../../../app.constants";
+import { API } from "src/app.constants.ts";
 import {
   HttpClientConfig,
   HttpClientResponse,
-} from "../../types/ApiAdapter.types";
-import FetchErrorHandler from "./utils/fetch-error-handler";
+} from "src/shared/api/types/ApiAdapter.types";
+import FetchErrorHandler from "src/shared/api/adapters/fetch/utils/fetch-error-handler";
 
 export default class FetchAdapter {
   async get<T, D>(
