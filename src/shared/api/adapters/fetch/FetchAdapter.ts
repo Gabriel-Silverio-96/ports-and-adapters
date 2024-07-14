@@ -3,7 +3,7 @@ import {
   HttpClientConfig,
   HttpClientResponse,
 } from "src/shared/api/types/ApiAdapter.types";
-import FetchErrorHandler from "src/shared/api/adapters/fetch/utils/fetch-error-handler";
+import FetchErrorHandler from "src/shared/api/adapters/fetch/utils/FetchErrorHandler";
 
 /**
  * Provides methods to make HTTP requests using the Fetch API.

@@ -1,7 +1,7 @@
-import FetchErrorHandler from "./fetch-error-handler";
+import FetchErrorHandler from "./FetchErrorHandler";
 import { describe, expect, test } from "vitest";
 
-describe("Class FetchErrorHandler", () => {
+describe("FetchErrorHandler", () => {
   test("should throw an error if response is not ok", () => {
     const response = {
       ok: false,
