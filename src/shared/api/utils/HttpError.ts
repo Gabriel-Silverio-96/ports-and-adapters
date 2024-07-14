@@ -4,7 +4,7 @@ class HttpError implements HttpErrorResponse {
   status: number;
   message: string;
 
-  constructor(response: Response) {
+  constructor(response: { status: number }) {
     this.status = response.status;
     this.message = `An error has occurred: ${response.status}`;
   }
