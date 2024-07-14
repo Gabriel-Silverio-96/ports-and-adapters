@@ -1,24 +1,21 @@
 import FetchErrorHandler from "./FetchErrorHandler";
-import { describe, expect, test } from "vitest";
+import { describe, expect, it } from "vitest";
 
 describe("FetchErrorHandler", () => {
-  test("should throw an error if response is not ok", () => {
-    const response = {
-      ok: false,
-      status: 500,
-    } as Response;
+  it("should throw an error if response is not ok", () => {
+    const response = { ok: false, status: 500 } as Response;
 
     const result = () => FetchErrorHandler.ResponseError(response);
-    expect(result).toThrow("An error has occurred: 500");
+    const expected = { status: 500, message: "An error has occurred: 500" };
+
+    expect(result).toThrowError(expect.objectContaining(expected));
   });
 
-  test("should not throw an error if response is ok", () => {
-    const response = {
-      ok: true,
-      status: 200,
-    } as Response;
+  it("should not throw an error if response is ok", () => {
+    const response = { ok: true, status: 200 } as Response;
 
     const result = () => FetchErrorHandler.ResponseError(response);
+
     expect(result).not.toThrow();
   });
 });
