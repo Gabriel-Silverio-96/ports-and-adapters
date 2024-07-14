@@ -58,6 +58,7 @@ describe("FetchAdapter", () => {
     });
     const response = async () => await adapter.get(endpoint);
 
-    expect(response).rejects.toThrow("An error has occurred: 500");
+    const expected = { status: 500, message: "An error has occurred: 500" };
+    expect(response).rejects.toThrowError(expect.objectContaining(expected));
   });
 });
