@@ -22,12 +22,10 @@ export default class AxiosAdapter {
     config?: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>> {
     try {
-      const { data, ...rest } = AxiosConfig.format({ ...config });
-      const response = await AxiosInstance.patch(endpoint, data, {
-        ...rest,
-      });
+      const formatedConfig = AxiosConfig.format({ ...config });
+      const { data } = await AxiosInstance.get(endpoint, { ...formatedConfig });
 
-      return { data: response.data };
+      return { data };
     } catch (e) {
       // IsAxiosError is not used to reduce the complexity of tests
       const error = e as AxiosError;
