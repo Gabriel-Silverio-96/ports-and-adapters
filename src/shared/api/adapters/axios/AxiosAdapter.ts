@@ -2,6 +2,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import AxiosInstance from "src/shared/api/adapters/axios/config/AxiosInstance";
 import { HttpClientConfig, HttpClientResponse } from "src/shared/api/types";
 import HttpError from "src/shared/api/utils/HttpError";
+import AxiosConfig from "./utils/AxiosConfig";
 
 /**
  * Provides methods to make HTTP requests using Axios.
@@ -21,9 +22,12 @@ export default class AxiosAdapter {
     config?: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>> {
     try {
-      const { data } = await AxiosInstance.get(endpoint, { ...config });
+      const { data, ...rest } = AxiosConfig.format({ ...config });
+      const response = await AxiosInstance.patch(endpoint, data, {
+        ...rest,
+      });
 
-      return { data };
+      return { data: response.data };
     } catch (e) {
       // IsAxiosError is not used to reduce the complexity of tests
       const error = e as AxiosError;
