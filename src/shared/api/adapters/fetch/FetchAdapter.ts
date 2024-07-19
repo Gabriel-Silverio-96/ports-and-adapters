@@ -1,9 +1,11 @@
 import { API } from "src/app.constants.ts";
 import {
+  Config,
   HttpClientConfig,
   HttpClientResponse,
 } from "src/shared/api/types/ApiAdapter.types";
 import FetchErrorHandler from "src/shared/api/adapters/fetch/utils/FetchErrorHandler";
+import FetchConfig from "src/shared/api/adapters/fetch/utils/FetchConfig";
 
 /**
  * Provides methods to make HTTP requests using the Fetch API.
@@ -21,11 +23,12 @@ export default class FetchAdapter {
    */
   async get<T, D>(
     endpoint: string,
-    config?: HttpClientConfig<D>
+    config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
+    const formatedConfig = FetchConfig.format({ ...config });
     const response = await fetch(`${API.BASE_URL}${endpoint}`, {
       method: "GET",
-      ...config,
+      ...formatedConfig,
     });
 
     FetchErrorHandler.ResponseError(response);
