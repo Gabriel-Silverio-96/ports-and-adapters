@@ -1,4 +1,4 @@
-import FetchErrorHandler from "./FetchErrorHandler";
+import FetchErrorHandler from "src/shared/api/adapters/fetch/utils/FetchErrorHandler/FetchErrorHandler";
 import { describe, expect, it } from "vitest";
 
 describe("FetchErrorHandler", () => {
