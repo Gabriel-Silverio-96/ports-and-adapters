@@ -1,4 +1,5 @@
 import {
+  Config,
   HttpClientConfig,
   HttpClientResponse,
 } from "src/shared/api/types/ApiAdapter.types";
@@ -24,7 +25,7 @@ export default class ApiPort implements HttpClient {
    */
   async get<T, D>(
     endpoint: string,
-    config?: HttpClientConfig<D>
+    config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
     const { data } = await this.adapter.get<T, D>(endpoint, config || {});
 

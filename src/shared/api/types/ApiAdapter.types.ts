@@ -12,9 +12,11 @@ export interface HttpClientResponse<T> {
   data: T;
 }
 
-/**
- * Interface configuration depends on which http client is being used
- */
-export interface HttpClientConfig<D> {
-  headers?: any | D;
+export interface Config {
+  headers: { [key: string]: any };
+}
+
+export interface HttpClientConfig<D = any, H = any> {
+  payload?: D;
+  headers?: H extends { headers: infer H } ? H : any;
 }
