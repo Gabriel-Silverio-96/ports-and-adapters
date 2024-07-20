@@ -60,6 +60,7 @@ class AxiosAdapter {
     } catch (e) {
       // IsAxiosError is not used to reduce the complexity of tests
       const error = e as AxiosError;
+
       const { status, request } = error.response as AxiosResponse;
       const { response } = request;
 
