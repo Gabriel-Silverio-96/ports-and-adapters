@@ -3,11 +3,6 @@ export interface Get {
   headers?: unknown;
 }
 
-export interface HttpErrorResponse {
-  status: number;
-  message: string;
-}
-
 export interface HttpClientResponse<T> {
   data: T;
 }

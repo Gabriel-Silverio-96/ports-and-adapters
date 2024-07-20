@@ -6,6 +6,7 @@ import {
 } from "src/shared/api/types/ApiAdapter.types";
 import { FetchErrorHandler } from "src/shared/api/adapters/fetch/utils/FetchErrorHandler";
 import { FetchConfig } from "src/shared/api/adapters/fetch/utils/FetchConfig";
+import { DEFAULT_FETCH_CONFIG } from "src/shared/api/adapters/fetch/FetchAdapter.constants";
 
 /**
  * Provides methods to make HTTP requests using the Fetch API.
@@ -31,7 +32,25 @@ class FetchAdapter {
       ...formatedConfig,
     });
 
-    FetchErrorHandler.ResponseError(response);
+    await FetchErrorHandler.ResponseError(response);
+    const data = await response.json();
+
+    return { data };
+  }
+
+  async post<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D, Config>
+  ): Promise<HttpClientResponse<T>> {
+    const { headers, ...rest } = FetchConfig.format({ ...config });
+
+    const response = await fetch(`${API.BASE_URL}${endpoint}`, {
+      method: "POST",
+      headers: { ...DEFAULT_FETCH_CONFIG.HEADERS, ...headers },
+      ...rest,
+    });
+
+    await FetchErrorHandler.ResponseError(response);
     const data = await response.json();
 
     return { data };
