@@ -8,4 +8,9 @@ export interface HttpClient {
     endpoint: string,
     config: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>>;
+
+  post<T, D>(
+    endpoint: string,
+    config: HttpClientConfig<D>
+  ): Promise<HttpClientResponse<T>>;
 }

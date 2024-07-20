@@ -27,8 +27,17 @@ export default class ApiPort implements HttpClient {
     endpoint: string,
     config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
-    const { data } = await this.adapter.get<T, D>(endpoint, config || {});
+    const response = await this.adapter.get<T, D>(endpoint, config || {});
 
-    return { data };
+    return response;
+  }
+
+  async post<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D, Config>
+  ): Promise<HttpClientResponse<T>> {
+    const response = await this.adapter.post<T, D>(endpoint, config || {});
+
+    return response;
   }
 }
