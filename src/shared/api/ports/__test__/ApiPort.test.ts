@@ -8,8 +8,20 @@ class MockHttpClient implements HttpClient {
     endpoint: string,
     config?: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>> {
-    return { data: { id: 1, title: "Test Data" } as unknown as T };
+    return { data: { id: 1, title: "GET" } as unknown as T };
   }
+
+  async post<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D>
+  ): Promise<HttpClientResponse<T>> {
+    return { data: { id: 2, title: "POST" } as unknown as T };
+  }
+}
+
+interface Response {
+  id: number;
+  title: string;
 }
 
 let apiPort: ApiPort;
@@ -24,26 +36,40 @@ afterEach(() => {
   vi.clearAllMocks();
 });
 
+const configs = {
+  headers: {
+    Authorization: "Bearer token",
+  },
+  payload: { id: 2, title: "Test Payload" },
+};
+
 describe("ApiPort", () => {
-  it("should delegate the GET request to the adapter and return the data", async () => {
+  it("should pass the correct configs to the adapter", async () => {
     const endpoint = "/path";
-    const config = { headers: { Authorization: "Bearer token" } };
-
-    const { data } = await apiPort.get<{ id: number; title: string }, {}>(
-      endpoint,
-      config
-    );
-
-    expect(data).toEqual({ id: 1, title: "Test Data" });
-  });
-
-  it("should pass the correct endpoint and config to the adapter", async () => {
-    const endpoint = "/path";
-    const config = { headers: { Authorization: "Bearer token" } };
 
     const spy = vi.spyOn(mockHttpClient, "get");
-    await apiPort.get(endpoint, config);
+    await apiPort.get(endpoint, configs);
 
-    expect(spy).toHaveBeenCalledWith(endpoint, config);
+    expect(spy).toHaveBeenCalledWith(endpoint, configs);
+  });
+
+  it("should delegate the GET request to the adapter and return the data", async () => {
+    const endpoint = "/path";
+
+    const spy = vi.spyOn(mockHttpClient, "get");
+    const { data } = await apiPort.get<Response, {}>(endpoint);
+
+    expect(data).toEqual({ id: 1, title: "GET" });
+    expect(spy).toBeCalledTimes(1);
+  });
+
+  it("should delegate the POST request to the adapter and return the data", async () => {
+    const endpoint = "/path";
+
+    const spy = vi.spyOn(mockHttpClient, "post");
+    const { data } = await apiPort.post<Response, {}>(endpoint);
+
+    expect(data).toEqual({ id: 2, title: "POST" });
+    expect(spy).toBeCalledTimes(1);
   });
 });
