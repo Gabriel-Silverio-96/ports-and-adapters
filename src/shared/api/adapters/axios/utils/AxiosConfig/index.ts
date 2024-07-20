@@ -1,1 +1,1 @@
-export { default } from "./AxiosConfig";
+export * from "./AxiosConfig";
