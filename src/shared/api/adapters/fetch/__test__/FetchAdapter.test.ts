@@ -2,6 +2,7 @@ import { API } from "src/app.constants";
 import { FetchAdapter } from "src/shared/api/adapters/fetch/FetchAdapter";
 import { HttpClientConfig } from "src/shared/api/types";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { DEFAULT_FETCH_CONFIG } from "src/shared/api/adapters/fetch/FetchAdapter.constants";
 
 const mockedFetch = vi.fn();
 
@@ -31,6 +32,22 @@ describe("FetchAdapter", () => {
     });
   });
 
+  it("should make a POST request and return data", async () => {
+    const endpoint = "/path";
+    const response = [{ id: 2 }];
+
+    mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
+    const payload = [{ id: 3 }];
+    const { data } = await adapter.post(endpoint, { payload });
+
+    expect(data).toEqual(response);
+    expect(mockedFetch).toHaveBeenCalledWith(`${API.BASE_URL}${endpoint}`, {
+      method: "POST",
+      headers: { ...DEFAULT_FETCH_CONFIG.HEADERS },
+      body: JSON.stringify(payload),
+    });
+  });
+
   it("should make request with config", async () => {
     const endpoint = "/path";
     const response = [{ id: 1 }];
@@ -55,10 +72,16 @@ describe("FetchAdapter", () => {
       ok: false,
       status: 500,
       statusText: message,
+      json: vi.fn().mockResolvedValue({ message: "There's a problem" }),
     });
     const response = async () => await adapter.get(endpoint);
 
-    const expected = { status: 500, message: "An error has occurred: 500" };
+    const expected = {
+      status: 500,
+      message: "An error has occurred: 500",
+      data: { message: "There's a problem" },
+    };
+
     expect(response).rejects.toThrowError(expect.objectContaining(expected));
   });
 });
