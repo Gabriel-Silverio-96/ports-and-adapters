@@ -73,7 +73,7 @@ describe("AxiosAdapter", () => {
 
     mockedAxios.get.mockRejectedValue({
       response: {
-        request: { response: { message: "Have a problem" } },
+        request: { response: { message: "There's a problem" } },
         status: 500,
       },
     });
@@ -82,7 +82,7 @@ describe("AxiosAdapter", () => {
     const expected = {
       status: 500,
       message: "An error has occurred: 500",
-      data: { message: "Have a problem" },
+      data: { message: "There's a problem" },
     };
 
     expect(response).rejects.toThrowError(expect.objectContaining(expected));
