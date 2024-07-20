@@ -8,4 +8,4 @@ class FetchErrorHandler {
   }
 }
 
-export default FetchErrorHandler;
+export { FetchErrorHandler };

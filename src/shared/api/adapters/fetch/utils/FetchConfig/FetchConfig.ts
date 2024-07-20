@@ -20,4 +20,4 @@ class FetchConfig {
   }
 }
 
-export default FetchConfig;
+export { FetchConfig };
