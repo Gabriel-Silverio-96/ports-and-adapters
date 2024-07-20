@@ -4,13 +4,13 @@ import {
   HttpClientConfig,
   HttpClientResponse,
 } from "src/shared/api/types/ApiAdapter.types";
-import FetchErrorHandler from "src/shared/api/adapters/fetch/utils/FetchErrorHandler";
-import FetchConfig from "src/shared/api/adapters/fetch/utils/FetchConfig";
+import { FetchErrorHandler } from "src/shared/api/adapters/fetch/utils/FetchErrorHandler";
+import { FetchConfig } from "src/shared/api/adapters/fetch/utils/FetchConfig";
 
 /**
  * Provides methods to make HTTP requests using the Fetch API.
  */
-export default class FetchAdapter {
+class FetchAdapter {
   /**
    * Makes a GET request to the specified endpoint with optional configuration.
    *
@@ -37,3 +37,5 @@ export default class FetchAdapter {
     return { data };
   }
 }
+
+export { FetchAdapter };

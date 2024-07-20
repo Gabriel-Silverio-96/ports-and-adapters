@@ -1,1 +1,1 @@
-export { default } from "./FetchConfig";
+export * from "./FetchConfig";
