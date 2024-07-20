@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import AxiosAdapter from "src/shared/api/adapters/axios";
+import { AxiosAdapter } from "src/shared/api/adapters/axios";
 import ApiPort from "src/shared/api/ports/ApiPort";
 import FetchAdapter from "src/shared/api/adapters/fetch/FetchAdapter";
 
@@ -9,7 +9,7 @@ import FetchAdapter from "src/shared/api/adapters/fetch/FetchAdapter";
  */
 export function useApi(): ApiPort {
   const adapter = useMemo(() => new AxiosAdapter(), []);
-  //  const adapter = useMemo(() => new FetchAdapter(), []);
+  // const adapter = useMemo(() => new FetchAdapter(), []);
 
   const api = useMemo(() => new ApiPort(adapter), []);
 
