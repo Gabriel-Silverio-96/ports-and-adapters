@@ -1,13 +1,13 @@
 import { AxiosError, AxiosResponse } from "axios";
-import AxiosInstance from "src/shared/api/adapters/axios/config/AxiosInstance";
+import { AxiosInstance } from "src/shared/api/adapters/axios/AxiosInstance";
 import { HttpClientConfig, HttpClientResponse } from "src/shared/api/types";
 import HttpError from "src/shared/api/utils/HttpError";
-import AxiosConfig from "./utils/AxiosConfig";
+import { AxiosConfig } from "src/shared/api/adapters/axios/utils/AxiosConfig";
 
 /**
  * Provides methods to make HTTP requests using Axios.
  */
-export default class AxiosAdapter {
+class AxiosAdapter {
   /**
    * Makes a GET request to the specified endpoint with optional configuration.
    *
@@ -31,7 +31,9 @@ export default class AxiosAdapter {
       const error = e as AxiosError;
       const { status } = error.response as AxiosResponse;
 
-      throw new HttpError({ status: status });
+      throw new HttpError({ status });
     }
   }
 }
+
+export { AxiosAdapter };
