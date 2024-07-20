@@ -8,12 +8,12 @@ import {
   vitest,
 } from "vitest";
 import { HttpClientConfig } from "src/shared/api/types";
-import AxiosAdapter from "src/shared/api/adapters/axios/AxiosAdapter";
-import AxiosInstance from "src/shared/api/adapters/axios/config/AxiosInstance";
+import { AxiosAdapter } from "src/shared/api/adapters/axios/AxiosAdapter";
+import { AxiosInstance } from "src/shared/api/adapters/axios/AxiosInstance";
 
 const mockedAxios = AxiosInstance as any;
 
-vi.mock("src/shared/api/adapters/axios/config/AxiosInstance");
+vi.mock("src/shared/api/adapters/axios/AxiosInstance");
 let adapter: AxiosAdapter;
 
 beforeEach(() => {
