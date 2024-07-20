@@ -1,7 +1,7 @@
 import { API } from "src/app.constants";
+import { FetchAdapter } from "src/shared/api/adapters/fetch/FetchAdapter";
 import { HttpClientConfig } from "src/shared/api/types";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import FetchAdapter from "src/shared/api/adapters/fetch/FetchAdapter";
 
 const mockedFetch = vi.fn();
 
