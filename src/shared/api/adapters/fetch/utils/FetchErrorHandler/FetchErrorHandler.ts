@@ -1,9 +1,10 @@
 import HttpError from "src/shared/api/utils/HttpError";
 
 class FetchErrorHandler {
-  static ResponseError(response: Response) {
+  static async ResponseError(response: Response) {
     if (response.ok === false) {
-      throw new HttpError(response);
+      const data = await response.json();
+      throw new HttpError(response, data);
     }
   }
 }
