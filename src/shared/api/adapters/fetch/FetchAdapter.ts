@@ -59,7 +59,7 @@ class FetchAdapter {
       ...rest,
     });
 
-    await FetchErrorHandler.ResponseError(response);
+    await FetchErrorHandler.responseError(response);
 
     const data = await response.json();
     return { data };

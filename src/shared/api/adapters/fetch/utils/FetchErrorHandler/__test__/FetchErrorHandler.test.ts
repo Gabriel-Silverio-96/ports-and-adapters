@@ -9,7 +9,7 @@ describe("FetchErrorHandler", () => {
       json: vi.fn().mockResolvedValue({ message: "There's a problem" }),
     } as any;
 
-    const result = () => FetchErrorHandler.ResponseError(response);
+    const result = () => FetchErrorHandler.responseError(response);
     const expected = {
       status: 500,
       message: "An error has occurred: 500",
@@ -28,7 +28,7 @@ describe("FetchErrorHandler", () => {
       },
     } as any;
 
-    const result = () => FetchErrorHandler.ResponseError(response);
+    const result = () => FetchErrorHandler.responseError(response);
     const expected = {
       status: 500,
       message: "An error has occurred: 500",
@@ -41,7 +41,7 @@ describe("FetchErrorHandler", () => {
   it("should not throw an error if response is ok", () => {
     const response = { ok: true, status: 200, json: vi.fn() } as any;
 
-    const result = () => FetchErrorHandler.ResponseError(response);
+    const result = () => FetchErrorHandler.responseError(response);
 
     expect(result).not.toThrow();
     expect(result).not.toThrowError();
