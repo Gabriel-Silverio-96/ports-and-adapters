@@ -26,10 +26,17 @@ describe("FetchAdapter", () => {
 
     const { data } = await adapter.get(endpoint);
 
-    expect(data).toEqual(response);
-    expect(mockedFetch).toHaveBeenCalledWith(`${API.BASE_URL}${endpoint}`, {
+    const expected = {
       method: "GET",
-    });
+      headers: { ...DEFAULT_FETCH_CONFIG.HEADERS },
+      body: undefined,
+    };
+
+    expect(data).toEqual(response);
+    expect(mockedFetch).toHaveBeenCalledWith(
+      `${API.BASE_URL}${endpoint}`,
+      expected
+    );
   });
 
   it("should make a POST request and return data", async () => {
@@ -40,19 +47,27 @@ describe("FetchAdapter", () => {
     const payload = [{ id: 3 }];
     const { data } = await adapter.post(endpoint, { payload });
 
-    expect(data).toEqual(response);
-    expect(mockedFetch).toHaveBeenCalledWith(`${API.BASE_URL}${endpoint}`, {
+    const expected = {
       method: "POST",
       headers: { ...DEFAULT_FETCH_CONFIG.HEADERS },
       body: JSON.stringify(payload),
-    });
+    };
+
+    expect(data).toEqual(response);
+    expect(mockedFetch).toHaveBeenCalledWith(
+      `${API.BASE_URL}${endpoint}`,
+      expected
+    );
   });
 
   it("should make request with config", async () => {
     const endpoint = "/path";
     const response = [{ id: 1 }];
-    const config: HttpClientConfig<{ Authorization: string }> = {
-      headers: { Authorization: "Bearer token" },
+    const config: HttpClientConfig = {
+      headers: {
+        ...DEFAULT_FETCH_CONFIG.HEADERS,
+        Authorization: "Bearer token",
+      },
     };
 
     mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
