@@ -3,9 +3,9 @@ import {
   HttpClientConfig,
   HttpClientResponse,
 } from "src/shared/api/types/ApiAdapter.types";
-import { FetchConfig } from "./utils/FetchConfig";
+import { FetchConfig } from "src/shared/api/adapters/fetch/utils/FetchConfig";
 import { API } from "src/app.constants";
-import { FetchErrorHandler } from "./utils/FetchErrorHandler";
+import { FetchErrorHandler } from "src/shared/api/adapters/fetch/utils/FetchErrorHandler";
 import { DEFAULT_FETCH_CONFIG } from "src/shared/api/adapters/fetch/FetchAdapter.constants";
 
 /**
