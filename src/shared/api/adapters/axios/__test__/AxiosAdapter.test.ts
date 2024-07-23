@@ -73,7 +73,7 @@ describe("AxiosAdapter", () => {
 
     mockedAxios.get.mockRejectedValue({
       response: {
-        request: { response: { message: "There's a problem" } },
+        data: { message: "There's a problem" },
         status: 500,
       },
     });
