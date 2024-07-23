@@ -19,6 +19,25 @@ describe("FetchErrorHandler", () => {
     expect(result).rejects.toThrow(expect.objectContaining(expected));
   });
 
+  it("should return null data when the response value is not valid", () => {
+    const response = {
+      ok: false,
+      status: 500,
+      json: () => {
+        throw new Error("Failed to parse JSON");
+      },
+    } as any;
+
+    const result = () => FetchErrorHandler.ResponseError(response);
+    const expected = {
+      status: 500,
+      message: "An error has occurred: 500",
+      data: null,
+    };
+
+    expect(result).rejects.toThrow(expect.objectContaining(expected));
+  });
+
   it("should not throw an error if response is ok", () => {
     const response = { ok: true, status: 200, json: vi.fn() } as any;
 
