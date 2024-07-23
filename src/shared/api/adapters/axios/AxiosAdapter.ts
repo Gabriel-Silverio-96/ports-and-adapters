@@ -30,10 +30,9 @@ class AxiosAdapter {
       // IsAxiosError is not used to reduce the complexity of tests
       const error = e as AxiosError;
 
-      const { status, request } = error.response as AxiosResponse;
-      const { response } = request;
+      const { status, data } = error.response as AxiosResponse;
 
-      throw new HttpError({ status }, response);
+      throw new HttpError({ status }, data);
     }
   }
 
@@ -61,10 +60,9 @@ class AxiosAdapter {
       // IsAxiosError is not used to reduce the complexity of tests
       const error = e as AxiosError;
 
-      const { status, request } = error.response as AxiosResponse;
-      const { response } = request;
+      const { status, data } = error.response as AxiosResponse;
 
-      throw new HttpError({ status }, response);
+      throw new HttpError({ status }, data);
     }
   }
 }
