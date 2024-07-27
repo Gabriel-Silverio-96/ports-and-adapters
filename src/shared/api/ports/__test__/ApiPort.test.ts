@@ -17,6 +17,27 @@ class MockHttpClient implements HttpClient {
   ): Promise<HttpClientResponse<T>> {
     return { data: { id: 2, title: "POST" } as unknown as T };
   }
+
+  async put<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D>
+  ): Promise<HttpClientResponse<T>> {
+    return { data: { id: 3, title: "PUT" } as unknown as T };
+  }
+
+  async patch<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D>
+  ): Promise<HttpClientResponse<T>> {
+    return { data: { id: 4, title: "PATCH" } as unknown as T };
+  }
+
+  async delete<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D>
+  ): Promise<HttpClientResponse<T>> {
+    return { data: { id: 5, title: "DELETE" } as unknown as T };
+  }
 }
 
 interface Response {
@@ -70,6 +91,36 @@ describe("ApiPort", () => {
     const { data } = await apiPort.post<Response, {}>(endpoint);
 
     expect(data).toEqual({ id: 2, title: "POST" });
+    expect(spy).toBeCalledTimes(1);
+  });
+
+  it("should delegate the PUT request to the adapter and return the data", async () => {
+    const endpoint = "/path";
+
+    const spy = vi.spyOn(mockHttpClient, "put");
+    const { data } = await apiPort.put<Response, {}>(endpoint);
+
+    expect(data).toEqual({ id: 3, title: "PUT" });
+    expect(spy).toBeCalledTimes(1);
+  });
+
+  it("should delegate the PATCH request to the adapter and return the data", async () => {
+    const endpoint = "/path";
+
+    const spy = vi.spyOn(mockHttpClient, "patch");
+    const { data } = await apiPort.patch<Response, {}>(endpoint);
+
+    expect(data).toEqual({ id: 4, title: "PATCH" });
+    expect(spy).toBeCalledTimes(1);
+  });
+
+  it("should delegate the DELETE request to the adapter and return the data", async () => {
+    const endpoint = "/path";
+
+    const spy = vi.spyOn(mockHttpClient, "delete");
+    const { data } = await apiPort.delete<Response, {}>(endpoint);
+
+    expect(data).toEqual({ id: 5, title: "DELETE" });
     expect(spy).toBeCalledTimes(1);
   });
 });
