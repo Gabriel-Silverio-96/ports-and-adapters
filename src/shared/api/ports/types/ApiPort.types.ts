@@ -13,4 +13,19 @@ export interface HttpClient {
     endpoint: string,
     config: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>>;
+
+  put<T, D>(
+    endpoint: string,
+    config: HttpClientConfig<D>
+  ): Promise<HttpClientResponse<T>>;
+
+  patch<T, D>(
+    endpoint: string,
+    config: HttpClientConfig<D>
+  ): Promise<HttpClientResponse<T>>;
+
+  delete<T, D>(
+    endpoint: string,
+    config: HttpClientConfig<D>
+  ): Promise<HttpClientResponse<T>>;
 }
