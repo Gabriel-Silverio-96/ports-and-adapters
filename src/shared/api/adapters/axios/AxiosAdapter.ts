@@ -26,13 +26,13 @@ class AxiosAdapter {
   ): Promise<HttpClientResponse<T>> {
     try {
       const formattedConfig = AxiosConfig.format({ ...config });
-      const response = await AxiosInstance({
+      const { data } = await AxiosInstance({
         method,
         url: endpoint,
         ...formattedConfig,
       });
 
-      return { data: response.data };
+      return { data };
     } catch (e) {
       const error = e as AxiosError;
       const { status, data } = error.response as AxiosResponse;
