@@ -29,27 +29,63 @@ describe("AxiosAdapter", () => {
     const endpoint = "/path";
     const response = [{ id: 1 }];
 
-    mockedAxios.get.mockResolvedValue({ data: response });
+    mockedAxios.mockResolvedValue({ data: response });
 
     const { data } = await adapter.get(endpoint);
 
+    const expected = {
+      method: "GET",
+      url: endpoint,
+      data: undefined,
+      headers: undefined,
+    };
+
     expect(data).toEqual(response);
-    expect(mockedAxios.get).toHaveBeenCalledWith(endpoint, {});
+    expect(mockedAxios).toHaveBeenCalledWith(expected);
   });
 
   it("should make a POST request and return data", async () => {
     const endpoint = "/path";
     const response = [{ id: 1 }];
 
-    mockedAxios.post.mockResolvedValue({ data: response });
+    mockedAxios.mockResolvedValue({ data: response });
 
     const payload = [{ id: 2 }];
     const { data } = await adapter.post(endpoint, {
       payload,
     });
 
+    const expected = {
+      method: "POST",
+      url: endpoint,
+      data: payload,
+      headers: undefined,
+    };
+
     expect(data).toEqual(response);
-    expect(mockedAxios.post).toHaveBeenCalledWith(endpoint, payload, {});
+    expect(mockedAxios).toHaveBeenCalledWith(expected);
+  });
+
+  it("should make a PUT request and return data", async () => {
+    const endpoint = "/path";
+    const response = [{ id: 1 }];
+
+    mockedAxios.mockResolvedValue({ data: response });
+
+    const payload = [{ id: 2 }];
+    const { data } = await adapter.put(endpoint, {
+      payload,
+    });
+
+    const expected = {
+      method: "PUT",
+      url: endpoint,
+      data: payload,
+      headers: undefined,
+    };
+
+    expect(data).toEqual(response);
+    expect(mockedAxios).toHaveBeenCalledWith(expected);
   });
 
   it("should make request with config", async () => {
@@ -59,19 +95,23 @@ describe("AxiosAdapter", () => {
       payload: [{ id: 2 }],
     };
 
-    mockedAxios.get.mockResolvedValue({ data: {} });
+    mockedAxios.mockResolvedValue({ data: {} });
     await adapter.get(endpoint, config);
 
-    expect(mockedAxios.get).toHaveBeenCalledWith(endpoint, {
+    const expected = {
+      method: "GET",
+      url: endpoint,
       headers: { Authorization: "Bearer token" },
       data: [{ id: 2 }],
-    });
+    };
+
+    expect(mockedAxios).toHaveBeenCalledWith(expected);
   });
 
   it("should handle errors", async () => {
     const endpoint = "/path";
 
-    mockedAxios.get.mockRejectedValue({
+    mockedAxios.mockRejectedValue({
       response: {
         data: { message: "There's a problem" },
         status: 500,
