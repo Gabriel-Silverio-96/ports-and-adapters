@@ -15,6 +15,10 @@ class FetchConfig {
     try {
       return JSON.stringify(payload);
     } catch (error) {
+      console.error(
+        "FetchConfig: Value is not accepted for stringified",
+        payload
+      );
       return null;
     }
   }
