@@ -71,6 +71,13 @@ class FetchAdapter {
   ): Promise<HttpClientResponse<T>> {
     return this.fetch(endpoint, config, "PATCH");
   }
+
+  public async delete<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D, Config>
+  ): Promise<HttpClientResponse<T>> {
+    return this.fetch(endpoint, config, "DELETE");
+  }
 }
 
 export { FetchAdapter };

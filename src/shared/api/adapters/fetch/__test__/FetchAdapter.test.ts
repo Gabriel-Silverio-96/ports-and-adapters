@@ -102,6 +102,27 @@ describe("FetchAdapter", () => {
     );
   });
 
+  it("should make a DELETE request and return data", async () => {
+    const endpoint = "/path";
+    const response = [{ id: 2 }];
+
+    mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
+    const payload = [{ id: 6 }];
+    const { data } = await adapter.delete(endpoint, { payload });
+
+    const expected = {
+      method: "DELETE",
+      headers: { ...DEFAULT_FETCH_CONFIG.HEADERS },
+      body: JSON.stringify(payload),
+    };
+
+    expect(data).toEqual(response);
+    expect(mockedFetch).toHaveBeenCalledWith(
+      `${API.BASE_URL}${endpoint}`,
+      expected
+    );
+  });
+
   it("should make request with config", async () => {
     const endpoint = "/path";
     const response = [{ id: 1 }];
