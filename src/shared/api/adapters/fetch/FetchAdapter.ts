@@ -64,6 +64,13 @@ class FetchAdapter {
   ): Promise<HttpClientResponse<T>> {
     return this.fetch(endpoint, config, "PUT");
   }
+
+  public async patch<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D, Config>
+  ): Promise<HttpClientResponse<T>> {
+    return this.fetch(endpoint, config, "PATCH");
+  }
 }
 
 export { FetchAdapter };

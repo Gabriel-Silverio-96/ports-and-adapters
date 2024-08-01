@@ -81,6 +81,27 @@ describe("FetchAdapter", () => {
     );
   });
 
+  it("should make a PATCH request and return data", async () => {
+    const endpoint = "/path";
+    const response = [{ id: 2 }];
+
+    mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
+    const payload = [{ id: 5 }];
+    const { data } = await adapter.patch(endpoint, { payload });
+
+    const expected = {
+      method: "PATCH",
+      headers: { ...DEFAULT_FETCH_CONFIG.HEADERS },
+      body: JSON.stringify(payload),
+    };
+
+    expect(data).toEqual(response);
+    expect(mockedFetch).toHaveBeenCalledWith(
+      `${API.BASE_URL}${endpoint}`,
+      expected
+    );
+  });
+
   it("should make request with config", async () => {
     const endpoint = "/path";
     const response = [{ id: 1 }];
