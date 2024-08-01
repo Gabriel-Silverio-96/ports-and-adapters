@@ -22,7 +22,7 @@ describe("FetchAdapter", () => {
     const endpoint = "/path";
     const response = [{ id: 1 }];
 
-    mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
+    mockedFetch.mockResolvedValue({ ok: true, json: () => response });
 
     const { data } = await adapter.get(endpoint);
 
@@ -43,12 +43,75 @@ describe("FetchAdapter", () => {
     const endpoint = "/path";
     const response = [{ id: 2 }];
 
-    mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
+    mockedFetch.mockResolvedValue({ ok: true, json: () => response });
     const payload = [{ id: 3 }];
     const { data } = await adapter.post(endpoint, { payload });
 
     const expected = {
       method: "POST",
+      headers: { ...DEFAULT_FETCH_CONFIG.HEADERS },
+      body: JSON.stringify(payload),
+    };
+
+    expect(data).toEqual(response);
+    expect(mockedFetch).toHaveBeenCalledWith(
+      `${API.BASE_URL}${endpoint}`,
+      expected
+    );
+  });
+
+  it("should make a PUT request and return data", async () => {
+    const endpoint = "/path";
+    const response = [{ id: 2 }];
+
+    mockedFetch.mockResolvedValue({ ok: true, json: () => response });
+    const payload = [{ id: 4 }];
+    const { data } = await adapter.put(endpoint, { payload });
+
+    const expected = {
+      method: "PUT",
+      headers: { ...DEFAULT_FETCH_CONFIG.HEADERS },
+      body: JSON.stringify(payload),
+    };
+
+    expect(data).toEqual(response);
+    expect(mockedFetch).toHaveBeenCalledWith(
+      `${API.BASE_URL}${endpoint}`,
+      expected
+    );
+  });
+
+  it("should make a PATCH request and return data", async () => {
+    const endpoint = "/path";
+    const response = [{ id: 2 }];
+
+    mockedFetch.mockResolvedValue({ ok: true, json: () => response });
+    const payload = [{ id: 5 }];
+    const { data } = await adapter.patch(endpoint, { payload });
+
+    const expected = {
+      method: "PATCH",
+      headers: { ...DEFAULT_FETCH_CONFIG.HEADERS },
+      body: JSON.stringify(payload),
+    };
+
+    expect(data).toEqual(response);
+    expect(mockedFetch).toHaveBeenCalledWith(
+      `${API.BASE_URL}${endpoint}`,
+      expected
+    );
+  });
+
+  it("should make a DELETE request and return data", async () => {
+    const endpoint = "/path";
+    const response = [{ id: 2 }];
+
+    mockedFetch.mockResolvedValue({ ok: true, json: () => response });
+    const payload = [{ id: 6 }];
+    const { data } = await adapter.delete(endpoint, { payload });
+
+    const expected = {
+      method: "DELETE",
       headers: { ...DEFAULT_FETCH_CONFIG.HEADERS },
       body: JSON.stringify(payload),
     };
@@ -70,8 +133,8 @@ describe("FetchAdapter", () => {
       },
     };
 
-    mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
-    await adapter.get<typeof response, any>(endpoint, config);
+    mockedFetch.mockResolvedValue({ ok: true, json: () => response });
+    await adapter.get(endpoint, config);
 
     expect(mockedFetch).toHaveBeenCalledWith(`${API.BASE_URL}${endpoint}`, {
       method: "GET",
