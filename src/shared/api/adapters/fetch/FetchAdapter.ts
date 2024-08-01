@@ -2,6 +2,7 @@ import {
   Config,
   HttpClientConfig,
   HttpClientResponse,
+  Method,
 } from "src/shared/api/types/ApiAdapter.types";
 import { FetchConfig } from "src/shared/api/adapters/fetch/utils/FetchConfig";
 import { API } from "src/app.constants";
@@ -27,7 +28,7 @@ class FetchAdapter {
   private async fetch<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>,
-    method?: string
+    method?: Method
   ): Promise<HttpClientResponse<T>> {
     const { headers, ...rest } = FetchConfig.format({ ...config });
 
