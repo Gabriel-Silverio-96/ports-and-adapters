@@ -22,7 +22,7 @@ describe("FetchAdapter", () => {
     const endpoint = "/path";
     const response = [{ id: 1 }];
 
-    mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
+    mockedFetch.mockResolvedValue({ ok: true, json: () => response });
 
     const { data } = await adapter.get(endpoint);
 
@@ -43,7 +43,7 @@ describe("FetchAdapter", () => {
     const endpoint = "/path";
     const response = [{ id: 2 }];
 
-    mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
+    mockedFetch.mockResolvedValue({ ok: true, json: () => response });
     const payload = [{ id: 3 }];
     const { data } = await adapter.post(endpoint, { payload });
 
@@ -64,7 +64,7 @@ describe("FetchAdapter", () => {
     const endpoint = "/path";
     const response = [{ id: 2 }];
 
-    mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
+    mockedFetch.mockResolvedValue({ ok: true, json: () => response });
     const payload = [{ id: 4 }];
     const { data } = await adapter.put(endpoint, { payload });
 
@@ -85,7 +85,7 @@ describe("FetchAdapter", () => {
     const endpoint = "/path";
     const response = [{ id: 2 }];
 
-    mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
+    mockedFetch.mockResolvedValue({ ok: true, json: () => response });
     const payload = [{ id: 5 }];
     const { data } = await adapter.patch(endpoint, { payload });
 
@@ -106,7 +106,7 @@ describe("FetchAdapter", () => {
     const endpoint = "/path";
     const response = [{ id: 2 }];
 
-    mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
+    mockedFetch.mockResolvedValue({ ok: true, json: () => response });
     const payload = [{ id: 6 }];
     const { data } = await adapter.delete(endpoint, { payload });
 
@@ -133,7 +133,7 @@ describe("FetchAdapter", () => {
       },
     };
 
-    mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
+    mockedFetch.mockResolvedValue({ ok: true, json: () => response });
     await adapter.get(endpoint, config);
 
     expect(mockedFetch).toHaveBeenCalledWith(`${API.BASE_URL}${endpoint}`, {
