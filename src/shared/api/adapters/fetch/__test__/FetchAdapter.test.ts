@@ -134,7 +134,7 @@ describe("FetchAdapter", () => {
     };
 
     mockedFetch.mockResolvedValue({ ok: true, json: async () => response });
-    await adapter.get<typeof response, any>(endpoint, config);
+    await adapter.get(endpoint, config);
 
     expect(mockedFetch).toHaveBeenCalledWith(`${API.BASE_URL}${endpoint}`, {
       method: "GET",
