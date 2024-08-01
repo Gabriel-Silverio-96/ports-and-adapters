@@ -13,39 +13,17 @@ import { DEFAULT_FETCH_CONFIG } from "src/shared/api/adapters/fetch/FetchAdapter
  */
 class FetchAdapter {
   /**
-   * Makes a GET request to the specified endpoint with optional configuration.
+   * Makes an HTTP request to the specified endpoint with optional configuration and method.
    *
    * @template T - The type of the response data.
    * @template D - The type of the request data.
-   * @param {string} endpoint - The endpoint to make the GET request to.
+   * @param {string} endpoint - The endpoint to make the request.
    * @param {HttpClientConfig<D>} [config] - Optional configuration for the request.
+   * @param {string} [method] - The HTTP method to use for the request (e.g., "GET", "POST").
    * @returns {Promise<HttpClientResponse<T>>} - A promise that resolves to the response data.
    * @throws {HttpError} - Throws an HttpError if the response status is not OK.
+   * @private
    */
-  public async get<T, D>(
-    endpoint: string,
-    config?: HttpClientConfig<D, Config>
-  ): Promise<HttpClientResponse<T>> {
-    return this.fetch(endpoint, config, "GET");
-  }
-
-  /**
-   * Makes a POST request to the specified endpoint with optional configuration.
-   *
-   * @template T - The type of the response data.
-   * @template D - The type of the request data.
-   * @param {string} endpoint - The endpoint to make the POST request to.
-   * @param {HttpClientConfig<D>} [config] - Optional configuration for the request.
-   * @returns {Promise<HttpClientResponse<T>>} - A promise that resolves to the response data.
-   * @throws {HttpError} - Throws an HttpError if the response status is not OK.
-   */
-  public async post<T, D>(
-    endpoint: string,
-    config?: HttpClientConfig<D, Config>
-  ): Promise<HttpClientResponse<T>> {
-    return this.fetch(endpoint, config, "POST");
-  }
-
   private async fetch<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>,
@@ -63,6 +41,20 @@ class FetchAdapter {
 
     const data = await response.json();
     return { data };
+  }
+
+  public async get<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D, Config>
+  ): Promise<HttpClientResponse<T>> {
+    return this.fetch(endpoint, config, "GET");
+  }
+
+  public async post<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D, Config>
+  ): Promise<HttpClientResponse<T>> {
+    return this.fetch(endpoint, config, "POST");
   }
 }
 
