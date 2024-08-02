@@ -9,11 +9,11 @@ import {
 } from "vitest";
 import { HttpClientConfig } from "src/shared/api/types";
 import { AxiosAdapter } from "src/shared/api/adapters/axios/AxiosAdapter";
-import { AxiosInstance } from "src/shared/api/adapters/axios/AxiosInstance";
+import { AxiosCreate } from "src/shared/api/adapters/axios/AxiosCreate";
 
-const mockedAxios = AxiosInstance as any;
+const mockedAxios = AxiosCreate as any;
 
-vi.mock("src/shared/api/adapters/axios/AxiosInstance");
+vi.mock("src/shared/api/adapters/axios/AxiosCreate");
 let adapter: AxiosAdapter;
 
 beforeEach(() => {
@@ -72,13 +72,57 @@ describe("AxiosAdapter", () => {
 
     mockedAxios.mockResolvedValue({ data: response });
 
-    const payload = [{ id: 2 }];
+    const payload = [{ id: 3 }];
     const { data } = await adapter.put(endpoint, {
       payload,
     });
 
     const expected = {
       method: "PUT",
+      url: endpoint,
+      data: payload,
+      headers: undefined,
+    };
+
+    expect(data).toEqual(response);
+    expect(mockedAxios).toHaveBeenCalledWith(expected);
+  });
+
+  it("should make a PATCH request and return data", async () => {
+    const endpoint = "/path";
+    const response = [{ id: 1 }];
+
+    mockedAxios.mockResolvedValue({ data: response });
+
+    const payload = [{ id: 4 }];
+    const { data } = await adapter.patch(endpoint, {
+      payload,
+    });
+
+    const expected = {
+      method: "PATCH",
+      url: endpoint,
+      data: payload,
+      headers: undefined,
+    };
+
+    expect(data).toEqual(response);
+    expect(mockedAxios).toHaveBeenCalledWith(expected);
+  });
+
+  it("should make a DELETE request and return data", async () => {
+    const endpoint = "/path";
+    const response = [{ id: 1 }];
+
+    mockedAxios.mockResolvedValue({ data: response });
+
+    const payload = [{ id: 5 }];
+    const { data } = await adapter.delete(endpoint, {
+      payload,
+    });
+
+    const expected = {
+      method: "DELETE",
       url: endpoint,
       data: payload,
       headers: undefined,
