@@ -72,13 +72,35 @@ describe("AxiosAdapter", () => {
 
     mockedAxios.mockResolvedValue({ data: response });
 
-    const payload = [{ id: 2 }];
+    const payload = [{ id: 3 }];
     const { data } = await adapter.put(endpoint, {
       payload,
     });
 
     const expected = {
       method: "PUT",
+      url: endpoint,
+      data: payload,
+      headers: undefined,
+    };
+
+    expect(data).toEqual(response);
+    expect(mockedAxios).toHaveBeenCalledWith(expected);
+  });
+
+  it("should make a PATCH request and return data", async () => {
+    const endpoint = "/path";
+    const response = [{ id: 1 }];
+
+    mockedAxios.mockResolvedValue({ data: response });
+
+    const payload = [{ id: 4 }];
+    const { data } = await adapter.patch(endpoint, {
+      payload,
+    });
+
+    const expected = {
+      method: "PATCH",
       url: endpoint,
       data: payload,
       headers: undefined,

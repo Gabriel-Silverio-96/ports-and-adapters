@@ -1,6 +1,10 @@
-import { AxiosError, AxiosResponse, Method } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { AxiosInstance } from "src/shared/api/adapters/axios/AxiosInstance";
-import { HttpClientConfig, HttpClientResponse } from "src/shared/api/types";
+import {
+  HttpClientConfig,
+  HttpClientResponse,
+  Method,
+} from "src/shared/api/types";
 import HttpError from "src/shared/api/utils/HttpError";
 import { AxiosConfig } from "src/shared/api/adapters/axios/utils/AxiosConfig";
 
@@ -60,6 +64,13 @@ class AxiosAdapter {
     config?: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>> {
     return this.axios(endpoint, config, "PUT");
+  }
+
+  public async patch<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D>
+  ): Promise<HttpClientResponse<T>> {
+    return this.axios(endpoint, config, "PATCH");
   }
 }
 
