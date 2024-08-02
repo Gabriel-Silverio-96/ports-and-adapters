@@ -72,6 +72,13 @@ class AxiosAdapter {
   ): Promise<HttpClientResponse<T>> {
     return this.axios(endpoint, config, "PATCH");
   }
+
+  public async delete<T, D>(
+    endpoint: string,
+    config?: HttpClientConfig<D>
+  ): Promise<HttpClientResponse<T>> {
+    return this.axios(endpoint, config, "DELETE");
+  }
 }
 
 export { AxiosAdapter };

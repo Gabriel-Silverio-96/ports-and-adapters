@@ -110,6 +110,28 @@ describe("AxiosAdapter", () => {
     expect(mockedAxios).toHaveBeenCalledWith(expected);
   });
 
+  it("should make a DELETE request and return data", async () => {
+    const endpoint = "/path";
+    const response = [{ id: 1 }];
+
+    mockedAxios.mockResolvedValue({ data: response });
+
+    const payload = [{ id: 5 }];
+    const { data } = await adapter.delete(endpoint, {
+      payload,
+    });
+
+    const expected = {
+      method: "DELETE",
+      url: endpoint,
+      data: payload,
+      headers: undefined,
+    };
+
+    expect(data).toEqual(response);
+    expect(mockedAxios).toHaveBeenCalledWith(expected);
+  });
+
   it("should make request with config", async () => {
     const endpoint = "/path";
     const config: HttpClientConfig = {
