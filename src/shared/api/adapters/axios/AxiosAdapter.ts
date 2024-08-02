@@ -9,7 +9,7 @@ class AxiosAdapter extends AxiosInstance {
     endpoint: string,
     config?: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>> {
-    return this.axios(endpoint, config);
+    return this.axios(endpoint, config, "GET");
   }
 
   public async post<T, D>(
