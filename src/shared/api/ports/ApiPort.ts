@@ -14,7 +14,7 @@ import {
  * @param {HttpClientConfig<D>} [config] - Optional configuration for the request.
  * @returns {Promise<HttpClientResponse<T>>} - A promise that resolves to the response data
  */
-export default class ApiPort implements HttpClient {
+class ApiPort implements HttpClient {
   adapter: HttpClient;
   constructor(adapter: HttpClient) {
     this.adapter = adapter;
@@ -65,3 +65,5 @@ export default class ApiPort implements HttpClient {
     return response;
   }
 }
+
+export { ApiPort };
