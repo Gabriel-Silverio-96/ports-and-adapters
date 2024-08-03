@@ -13,35 +13,35 @@ class AxiosAdapter extends AxiosInstance implements HttpClient {
     endpoint: string,
     config?: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>> {
-    return this.axios(endpoint, config, "GET");
+    return await this.axios(endpoint, config, "GET");
   }
 
   public async post<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>> {
-    return this.axios(endpoint, config, "POST");
+    return await this.axios(endpoint, config, "POST");
   }
 
   public async put<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>> {
-    return this.axios(endpoint, config, "PUT");
+    return await this.axios(endpoint, config, "PUT");
   }
 
   public async patch<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>> {
-    return this.axios(endpoint, config, "PATCH");
+    return await this.axios(endpoint, config, "PATCH");
   }
 
   public async delete<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D>
   ): Promise<HttpClientResponse<T>> {
-    return this.axios(endpoint, config, "DELETE");
+    return await this.axios(endpoint, config, "DELETE");
   }
 }
 
