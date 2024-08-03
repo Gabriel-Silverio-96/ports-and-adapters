@@ -7,7 +7,7 @@ import {
   HttpClientConfig,
   HttpClientResponse,
   Method,
-} from "src/shared/api/types/ApiAdapter.types";
+} from "src/shared/api/types";
 
 /**
  * Represents an Fetch API instance for making HTTP requests.

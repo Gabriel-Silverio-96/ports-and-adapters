@@ -1,10 +1,14 @@
-import { HttpClientConfig, HttpClientResponse } from "src/shared/api/types";
+import {
+  HttpClient,
+  HttpClientConfig,
+  HttpClientResponse,
+} from "src/shared/api/types";
 import { AxiosInstance } from "src/shared/api/adapters/axios/utils/AxiosInstance";
 
 /**
  * Provides methods to make HTTP requests using Axios.
  */
-class AxiosAdapter extends AxiosInstance {
+class AxiosAdapter extends AxiosInstance implements HttpClient {
   public async get<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D>
