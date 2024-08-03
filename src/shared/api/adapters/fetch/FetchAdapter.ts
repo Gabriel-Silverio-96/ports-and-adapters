@@ -1,5 +1,6 @@
 import {
   Config,
+  HttpClient,
   HttpClientConfig,
   HttpClientResponse,
 } from "src/shared/api/types/ApiAdapter.types";
@@ -8,7 +9,7 @@ import { FetchInstance } from "src/shared/api/adapters/fetch/utils/FetchInstance
 /**
  * Provides methods to make HTTP requests using the Fetch API.
  */
-class FetchAdapter extends FetchInstance {
+class FetchAdapter extends FetchInstance implements HttpClient {
   public async get<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
