@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { HttpClientConfig } from "src/shared/api/types";
-import { FetchConfig } from "src/shared/api/adapters/fetch/utils/FetchConfig/FetchConfig";
+import { FetchConfig } from "src/shared/api/adapters/fetch/utils/FetchConfig";
 
 describe("FetchConfig", () => {
   it("should format HttpClientConfig correctly", () => {

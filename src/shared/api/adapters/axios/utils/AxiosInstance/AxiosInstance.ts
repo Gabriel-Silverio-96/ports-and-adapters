@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { AxiosConfig } from "src/shared/api/adapters/axios/utils/AxiosConfig";
-import {
+import type {
   HttpClientConfig,
   HttpClientResponse,
   Method,

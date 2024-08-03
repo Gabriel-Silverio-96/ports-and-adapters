@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from "src/shared/api/utils/HttpError/types";
+import type { HttpErrorResponse } from "src/shared/api/utils/HttpError/types";
 
 class HttpError implements HttpErrorResponse {
   status: number;

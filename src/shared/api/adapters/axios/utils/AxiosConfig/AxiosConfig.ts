@@ -1,4 +1,4 @@
-import { HttpClientConfig } from "src/shared/api/types";
+import type { HttpClientConfig } from "src/shared/api/types";
 
 class AxiosConfig {
   static format(config: HttpClientConfig) {

@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { AxiosAdapter } from "src/shared/api/adapters/axios";
-import ApiPort from "src/shared/api/ports/ApiPort";
+import { ApiPort } from "src/shared/api/ports/ApiPort";
 import { FetchAdapter } from "src/shared/api/adapters/fetch/FetchAdapter";
 
 /**
