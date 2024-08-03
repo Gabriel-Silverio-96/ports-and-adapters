@@ -14,35 +14,35 @@ class FetchAdapter extends FetchInstance implements HttpClient {
     endpoint: string,
     config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
-    return this.fetch(endpoint, config, "GET");
+    return await this.fetch(endpoint, config, "GET");
   }
 
   public async post<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
-    return this.fetch(endpoint, config, "POST");
+    return await this.fetch(endpoint, config, "POST");
   }
 
   public async put<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
-    return this.fetch(endpoint, config, "PUT");
+    return await this.fetch(endpoint, config, "PUT");
   }
 
   public async patch<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
-    return this.fetch(endpoint, config, "PATCH");
+    return await this.fetch(endpoint, config, "PATCH");
   }
 
   public async delete<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
-    return this.fetch(endpoint, config, "DELETE");
+    return await this.fetch(endpoint, config, "DELETE");
   }
 }
 

@@ -24,45 +24,35 @@ class ApiPort implements HttpClient {
     endpoint: string,
     config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
-    const response = await this.adapter.get<T, D>(endpoint, config || {});
-
-    return response;
+    return await this.adapter.get<T, D>(endpoint, config || {});
   }
 
   public async post<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
-    const response = await this.adapter.post<T, D>(endpoint, config || {});
-
-    return response;
+    return await this.adapter.post<T, D>(endpoint, config || {});
   }
 
   public async put<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
-    const response = await this.adapter.put<T, D>(endpoint, config || {});
-
-    return response;
+    return await this.adapter.put<T, D>(endpoint, config || {});
   }
 
   public async patch<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
-    const response = await this.adapter.patch<T, D>(endpoint, config || {});
-
-    return response;
+    return await this.adapter.patch<T, D>(endpoint, config || {});
   }
 
   public async delete<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
   ): Promise<HttpClientResponse<T>> {
-    const response = await this.adapter.delete<T, D>(endpoint, config || {});
-
-    return response;
+    return await this.adapter.delete<T, D>(endpoint, config || {});
   }
 }
 
