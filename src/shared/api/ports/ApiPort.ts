@@ -1,9 +1,9 @@
 import {
   Config,
+  HttpClient,
   HttpClientConfig,
   HttpClientResponse,
 } from "src/shared/api/types/ApiAdapter.types";
-import { HttpClient } from "src/shared/api/ports/types";
 
 /**
  * ApiPort will receive adapter.
