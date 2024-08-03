@@ -1,1 +1,1 @@
-export * from "./ApiAdapter.types";
+export * from "./Api.types";

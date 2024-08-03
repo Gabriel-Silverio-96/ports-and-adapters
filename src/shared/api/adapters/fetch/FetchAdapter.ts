@@ -3,7 +3,7 @@ import {
   HttpClient,
   HttpClientConfig,
   HttpClientResponse,
-} from "src/shared/api/types/ApiAdapter.types";
+} from "src/shared/api/types";
 import { FetchInstance } from "src/shared/api/adapters/fetch/utils/FetchInstance";
 
 /**
