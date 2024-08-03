@@ -1,7 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import ApiPort from "src/shared/api/ports/ApiPort";
-import { HttpClientConfig, HttpClientResponse } from "src/shared/api/types";
-import { HttpClient } from "src/shared/api/ports/types";
+import { ApiPort } from "src/shared/api/ports/ApiPort";
+import {
+  HttpClientConfig,
+  HttpClientResponse,
+  HttpClient,
+} from "src/shared/api/types";
 
 class MockHttpClient implements HttpClient {
   async get<T, D>(
