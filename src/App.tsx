@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useApi } from "./shared/hooks/useApi";
+import { useApi } from "src/shared/hooks/useApi";
 
 function App() {
   const api = useApi();
