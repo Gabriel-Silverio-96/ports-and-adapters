@@ -20,10 +20,9 @@ class FetchInstance {
    * @template D - The type of the request data.
    * @param {string} endpoint - The endpoint to make the request.
    * @param {HttpClientConfig<D>} [config] - Optional configuration for the request.
-   * @param {string} [method] - The HTTP method to use for the request (e.g., "GET", "POST").
+   * @param {string} [method] - The HTTP method to use for the request.
    * @returns {Promise<HttpClientResponse<T>>} - A promise that resolves to the response data.
    * @throws {HttpError} - Throws an HttpError if the response status is not OK.
-   * @private
    */
   public async fetch<T, D>(
     endpoint: string,
