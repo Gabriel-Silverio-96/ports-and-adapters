@@ -27,7 +27,7 @@ class AxiosInstance {
     endpoint: string,
     config?: HttpClientConfig<D>,
     method: Method = "GET"
-  ): Promise<HttpClientResponse<T>> {
+  ): Promise<HttpClientResponse<T> | HttpError> {
     try {
       const formattedConfig = AxiosConfig.format({ ...config });
 

@@ -8,6 +8,7 @@ import {
   HttpClientResponse,
   Method,
 } from "src/shared/api/types";
+import HttpError from "src/shared/api/utils/HttpError";
 
 /**
  * Represents an Fetch API instance for making HTTP requests.
@@ -28,7 +29,7 @@ class FetchInstance {
     endpoint: string,
     config?: HttpClientConfig<D, Config>,
     method: Method = "GET"
-  ): Promise<HttpClientResponse<T>> {
+  ): Promise<HttpClientResponse<T> | HttpError> {
     const { headers, ...rest } = FetchConfig.format({ ...config });
 
     const response = await fetch(`${API.BASE_URL}${endpoint}`, {
