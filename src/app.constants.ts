@@ -1,5 +1,5 @@
 const API = {
-  BASE_URL: "https://jsonplaceholder.typicode.com",
+  BASE_URL: "http://localhost:5050",
 };
 
 export { API };
