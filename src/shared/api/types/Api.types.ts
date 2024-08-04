@@ -1,3 +1,5 @@
+import HttpError from "src/shared/api/utils/HttpError";
+
 export type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
 export interface HttpClientResponse<T> {
@@ -17,25 +19,25 @@ export interface HttpClient {
   get<T, D>(
     endpoint: string,
     config: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T>>;
+  ): Promise<HttpClientResponse<T> | HttpError>;
 
   post<T, D>(
     endpoint: string,
     config: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T>>;
+  ): Promise<HttpClientResponse<T> | HttpError>;
 
   put<T, D>(
     endpoint: string,
     config: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T>>;
+  ): Promise<HttpClientResponse<T> | HttpError>;
 
   patch<T, D>(
     endpoint: string,
     config: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T>>;
+  ): Promise<HttpClientResponse<T> | HttpError>;
 
   delete<T, D>(
     endpoint: string,
     config: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T>>;
+  ): Promise<HttpClientResponse<T> | HttpError>;
 }
