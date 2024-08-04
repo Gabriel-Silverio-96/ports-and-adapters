@@ -24,7 +24,7 @@ describe("FetchErrorHandler", () => {
       ok: false,
       status: 500,
       json: () => {
-        throw new Error("Failed to parse JSON");
+        throw new Error("JSON parsing failed");
       },
     } as any;
 
