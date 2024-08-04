@@ -12,6 +12,7 @@ class FetchErrorHandler {
     try {
       return await response.json();
     } catch (error) {
+      console.error("FetchErrorHandler: JSON parsing failed");
       return null;
     }
   }
