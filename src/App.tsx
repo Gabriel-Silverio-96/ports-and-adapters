@@ -7,10 +7,15 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await api.get("/todos");
-        console.log(response);
+        const response = await api.get("/todos", {
+          headers: {
+            "Content-Something": "value",
+          },
+        });
+
+        console.log(":::SUC ", response);
       } catch (error) {
-        console.error("GET TODOS ", error);
+        console.error(">>>ERROR ", error);
       }
     };
     getData();
