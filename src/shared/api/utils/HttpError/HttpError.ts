@@ -12,4 +12,4 @@ class HttpError implements HttpErrorResponse {
   }
 }
 
-export default HttpError;
+export { HttpError };
