@@ -5,7 +5,7 @@ import type {
   HttpClientResponse,
   Method,
 } from "src/shared/api/types";
-import HttpError from "src/shared/api/utils/HttpError";
+import { HttpError } from "src/shared/api/utils/HttpError";
 import { AxiosCreate } from "src/shared/api/adapters/axios/AxiosCreate";
 
 /**

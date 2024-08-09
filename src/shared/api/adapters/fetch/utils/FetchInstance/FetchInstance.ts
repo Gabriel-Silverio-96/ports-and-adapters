@@ -8,7 +8,7 @@ import {
   HttpClientResponse,
   Method,
 } from "src/shared/api/types";
-import HttpError from "src/shared/api/utils/HttpError";
+import { HttpError } from "src/shared/api/utils/HttpError";
 
 /**
  * Represents an Fetch API instance for making HTTP requests.

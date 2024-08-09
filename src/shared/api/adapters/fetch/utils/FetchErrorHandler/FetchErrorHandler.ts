@@ -1,4 +1,4 @@
-import HttpError from "src/shared/api/utils/HttpError";
+import { HttpError } from "src/shared/api/utils/HttpError";
 
 class FetchErrorHandler {
   public static async responseError(response: Response) {

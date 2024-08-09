@@ -4,7 +4,7 @@ import type {
   HttpClientResponse,
 } from "src/shared/api/types";
 import { AxiosInstance } from "src/shared/api/adapters/axios/utils/AxiosInstance";
-import HttpError from "src/shared/api/utils/HttpError";
+import { HttpError } from "src/shared/api/utils/HttpError";
 
 /**
  * Provides methods to make HTTP requests using Axios.
