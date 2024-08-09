@@ -1,51 +1,28 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ApiPort } from "src/shared/api/ports/ApiPort";
-import {
-  HttpClientConfig,
-  HttpClientResponse,
-  HttpClient,
-} from "src/shared/api/types";
+import { HttpClient, HttpClientResponse } from "src/shared/api/types";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { HttpError } from "src/shared/api/utils/HttpError";
 
 class MockHttpClient implements HttpClient {
-  async get<T, D>(
-    endpoint: string,
-    config?: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T>> {
+  async get<T>(): Promise<HttpClientResponse<T> | HttpError> {
     return { data: { id: 1, title: "GET" } as unknown as T };
   }
 
-  async post<T, D>(
-    endpoint: string,
-    config?: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T>> {
+  async post<T>(): Promise<HttpClientResponse<T> | HttpError> {
     return { data: { id: 2, title: "POST" } as unknown as T };
   }
 
-  async put<T, D>(
-    endpoint: string,
-    config?: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T>> {
+  async put<T>(): Promise<HttpClientResponse<T> | HttpError> {
     return { data: { id: 3, title: "PUT" } as unknown as T };
   }
 
-  async patch<T, D>(
-    endpoint: string,
-    config?: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T>> {
+  async patch<T>(): Promise<HttpClientResponse<T> | HttpError> {
     return { data: { id: 4, title: "PATCH" } as unknown as T };
   }
 
-  async delete<T, D>(
-    endpoint: string,
-    config?: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T>> {
+  async delete<T>(): Promise<HttpClientResponse<T> | HttpError> {
     return { data: { id: 5, title: "DELETE" } as unknown as T };
   }
-}
-
-interface Response {
-  id: number;
-  title: string;
 }
 
 let apiPort: ApiPort;
@@ -81,7 +58,7 @@ describe("ApiPort", () => {
     const endpoint = "/path";
 
     const spy = vi.spyOn(mockHttpClient, "get");
-    const { data } = await apiPort.get<Response, {}>(endpoint);
+    const { data } = await apiPort.get(endpoint);
 
     expect(data).toEqual({ id: 1, title: "GET" });
     expect(spy).toBeCalledTimes(1);
@@ -91,7 +68,7 @@ describe("ApiPort", () => {
     const endpoint = "/path";
 
     const spy = vi.spyOn(mockHttpClient, "post");
-    const { data } = await apiPort.post<Response, {}>(endpoint);
+    const { data } = await apiPort.post(endpoint);
 
     expect(data).toEqual({ id: 2, title: "POST" });
     expect(spy).toBeCalledTimes(1);
@@ -101,7 +78,7 @@ describe("ApiPort", () => {
     const endpoint = "/path";
 
     const spy = vi.spyOn(mockHttpClient, "put");
-    const { data } = await apiPort.put<Response, {}>(endpoint);
+    const { data } = await apiPort.put(endpoint);
 
     expect(data).toEqual({ id: 3, title: "PUT" });
     expect(spy).toBeCalledTimes(1);
@@ -111,7 +88,7 @@ describe("ApiPort", () => {
     const endpoint = "/path";
 
     const spy = vi.spyOn(mockHttpClient, "patch");
-    const { data } = await apiPort.patch<Response, {}>(endpoint);
+    const { data } = await apiPort.patch(endpoint);
 
     expect(data).toEqual({ id: 4, title: "PATCH" });
     expect(spy).toBeCalledTimes(1);
@@ -121,7 +98,7 @@ describe("ApiPort", () => {
     const endpoint = "/path";
 
     const spy = vi.spyOn(mockHttpClient, "delete");
-    const { data } = await apiPort.delete<Response, {}>(endpoint);
+    const { data } = await apiPort.delete(endpoint);
 
     expect(data).toEqual({ id: 5, title: "DELETE" });
     expect(spy).toBeCalledTimes(1);

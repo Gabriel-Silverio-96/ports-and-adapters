@@ -5,7 +5,7 @@ import type {
   HttpClientResponse,
 } from "src/shared/api/types";
 import { FetchInstance } from "src/shared/api/adapters/fetch/utils/FetchInstance";
-import HttpError from "src/shared/api/utils/HttpError";
+import { HttpError } from "src/shared/api/utils/HttpError";
 
 /**
  * Provides methods to make HTTP requests using the Fetch API.

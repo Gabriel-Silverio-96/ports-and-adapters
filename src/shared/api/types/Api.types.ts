@@ -1,4 +1,4 @@
-import HttpError from "src/shared/api/utils/HttpError";
+import { HttpError } from "src/shared/api/utils/HttpError";
 
 export type Method = "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 
@@ -7,7 +7,7 @@ export interface HttpClientResponse<T> {
 }
 
 export interface Config {
-  headers: { [key: string]: any };
+  headers: Record<string, string | number>;
 }
 
 export interface HttpClientConfig<D = any, H = any> {
