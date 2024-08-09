@@ -4,6 +4,7 @@ import {
   describe,
   expect,
   it,
+  MockInstance,
   vi,
   vitest,
 } from "vitest";
@@ -11,7 +12,7 @@ import { HttpClientConfig } from "src/shared/api/types";
 import { AxiosAdapter } from "src/shared/api/adapters/axios/AxiosAdapter";
 import { AxiosCreate } from "src/shared/api/adapters/axios/AxiosCreate";
 
-const mockedAxios = AxiosCreate as any;
+const mockedAxios = AxiosCreate as unknown as MockInstance;
 
 vi.mock("src/shared/api/adapters/axios/AxiosCreate");
 let adapter: AxiosAdapter;
