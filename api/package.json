@@ -9,6 +9,7 @@
     "node": "18.20.3",
     "npm": "10.7.0"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",

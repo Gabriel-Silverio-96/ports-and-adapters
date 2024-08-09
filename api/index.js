@@ -1,6 +1,6 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
 const app = express();
 const port = 5050;
 
@@ -13,7 +13,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post('/todos', (req, res) => {
+app.post("/todos", (req, res) => {
     if (req.body.id === 1 || !req.body) {
         return res.status(422).send({ message: "Invalid value" })
     }
@@ -29,7 +29,7 @@ app.post('/todos', (req, res) => {
 });
 
 
-app.put('/todos', (req, res) => {
+app.put("/todos", (req, res) => {
     try {
         return res.status(201).send(req.body);
     } catch (err) {
@@ -40,7 +40,7 @@ app.put('/todos', (req, res) => {
     }
 });
 
-app.patch('/todos', (req, res) => {
+app.patch("/todos", (req, res) => {
     try {
         return res.status(201).send(req.body);
     } catch (err) {
@@ -51,7 +51,7 @@ app.patch('/todos', (req, res) => {
     }
 });
 
-app.delete('/todos', (req, res) => {
+app.delete("/todos", (req, res) => {
     try {
         return res.status(201).send(req.body);
     } catch (err) {
@@ -62,7 +62,7 @@ app.delete('/todos', (req, res) => {
     }
 });
 
-app.get('/todos', (req, res) => {
+app.get("/todos", (req, res) => {
     res.send([
         {
             "userId": 1,
@@ -97,7 +97,7 @@ app.get('/todos', (req, res) => {
     ]);
 });
 
-app.use((req, res, next) => {
+app.use((req, res) => {
     res.status(404).send({ message: "Not found", });
 });
 
