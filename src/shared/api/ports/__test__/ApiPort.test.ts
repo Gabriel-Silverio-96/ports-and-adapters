@@ -1,26 +1,25 @@
 import { ApiPort } from "src/shared/api/ports/ApiPort";
-import { HttpClient, HttpClientResponse } from "src/shared/api/types";
+import { HttpClient, HttpClientPromiseResponse } from "src/shared/api/types";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { HttpError } from "src/shared/api/utils/HttpError";
 
 class MockHttpClient implements HttpClient {
-  async get<T>(): Promise<HttpClientResponse<T> | HttpError> {
+  async get<T>(): HttpClientPromiseResponse<T> {
     return { data: { id: 1, title: "GET" } as unknown as T };
   }
 
-  async post<T>(): Promise<HttpClientResponse<T> | HttpError> {
+  async post<T>(): HttpClientPromiseResponse<T> {
     return { data: { id: 2, title: "POST" } as unknown as T };
   }
 
-  async put<T>(): Promise<HttpClientResponse<T> | HttpError> {
+  async put<T>(): HttpClientPromiseResponse<T> {
     return { data: { id: 3, title: "PUT" } as unknown as T };
   }
 
-  async patch<T>(): Promise<HttpClientResponse<T> | HttpError> {
+  async patch<T>(): HttpClientPromiseResponse<T> {
     return { data: { id: 4, title: "PATCH" } as unknown as T };
   }
 
-  async delete<T>(): Promise<HttpClientResponse<T> | HttpError> {
+  async delete<T>(): HttpClientPromiseResponse<T> {
     return { data: { id: 5, title: "DELETE" } as unknown as T };
   }
 }
