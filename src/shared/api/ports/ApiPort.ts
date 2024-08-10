@@ -2,9 +2,8 @@ import type {
   Config,
   HttpClient,
   HttpClientConfig,
-  HttpClientResponse,
+  HttpClientPromiseResponse,
 } from "src/shared/api/types";
-import { HttpError } from "src/shared/api/utils/HttpError";
 
 /**
  * ApiPort will receive adapter.
@@ -26,35 +25,35 @@ class ApiPort implements HttpClient {
   public async get<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
-  ): Promise<HttpClientResponse<T> | HttpError> {
+  ): HttpClientPromiseResponse<T> {
     return await this.adapter.get<T, D>(endpoint, config || {});
   }
 
   public async post<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
-  ): Promise<HttpClientResponse<T> | HttpError> {
+  ): HttpClientPromiseResponse<T> {
     return await this.adapter.post<T, D>(endpoint, config || {});
   }
 
   public async put<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
-  ): Promise<HttpClientResponse<T> | HttpError> {
+  ): HttpClientPromiseResponse<T> {
     return await this.adapter.put<T, D>(endpoint, config || {});
   }
 
   public async patch<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
-  ): Promise<HttpClientResponse<T> | HttpError> {
+  ): HttpClientPromiseResponse<T> {
     return await this.adapter.patch<T, D>(endpoint, config || {});
   }
 
   public async delete<T, D>(
     endpoint: string,
     config?: HttpClientConfig<D, Config>
-  ): Promise<HttpClientResponse<T> | HttpError> {
+  ): HttpClientPromiseResponse<T> {
     return await this.adapter.delete<T, D>(endpoint, config || {});
   }
 }

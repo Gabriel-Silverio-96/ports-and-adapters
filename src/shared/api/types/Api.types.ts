@@ -15,29 +15,33 @@ export interface HttpClientConfig<D = any, H = any> {
   headers?: H extends { headers: infer H } ? H : any;
 }
 
+export type HttpClientPromiseResponse<T> = Promise<
+  HttpClientResponse<T> | HttpError
+>;
+
 export interface HttpClient {
   get<T, D>(
     endpoint: string,
     config: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T> | HttpError>;
+  ): HttpClientPromiseResponse<T>;
 
   post<T, D>(
     endpoint: string,
     config: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T> | HttpError>;
+  ): HttpClientPromiseResponse<T>;
 
   put<T, D>(
     endpoint: string,
     config: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T> | HttpError>;
+  ): HttpClientPromiseResponse<T>;
 
   patch<T, D>(
     endpoint: string,
     config: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T> | HttpError>;
+  ): HttpClientPromiseResponse<T>;
 
   delete<T, D>(
     endpoint: string,
     config: HttpClientConfig<D>
-  ): Promise<HttpClientResponse<T> | HttpError>;
+  ): HttpClientPromiseResponse<T>;
 }

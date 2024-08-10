@@ -2,7 +2,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import { AxiosConfig } from "src/shared/api/adapters/axios/utils/AxiosConfig";
 import type {
   HttpClientConfig,
-  HttpClientResponse,
+  HttpClientPromiseResponse,
   Method,
 } from "src/shared/api/types";
 import { HttpError } from "src/shared/api/utils/HttpError";
@@ -27,7 +27,7 @@ class AxiosInstance {
     endpoint: string,
     config?: HttpClientConfig<D>,
     method: Method = "GET"
-  ): Promise<HttpClientResponse<T> | HttpError> {
+  ): HttpClientPromiseResponse<T> {
     try {
       const formattedConfig = AxiosConfig.format({ ...config });
 
