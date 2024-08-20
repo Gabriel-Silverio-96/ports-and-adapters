@@ -23,7 +23,19 @@ function App() {
     getData();
   }, []);
 
-  return <Card />;
+  return (
+    <Card
+      response={{
+        id: 1,
+        name: "John",
+      }}
+      payload={{
+        id: 2,
+        name: "Paylod",
+      }}
+      onClick={() => ""}
+    />
+  );
 }
 
 export default App;
