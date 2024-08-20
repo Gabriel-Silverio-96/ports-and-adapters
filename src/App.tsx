@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import "./style/global.css";
 import { useApi } from "src/shared/hooks/useApi";
+import { Card } from "./components/Card/Card";
 
 function App() {
   const api = useApi();
@@ -21,7 +23,7 @@ function App() {
     getData();
   }, []);
 
-  return <>Hello</>;
+  return <Card />;
 }
 
 export default App;
