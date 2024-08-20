@@ -105,8 +105,8 @@ The directory is divided into the following components:
 Clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/Gabriel-Silverio-96/ports-and-adapters.git
-cd ports-and-adapters
+git clone https://github.com/Gabriel-Silverio-96/ports-and-adapters-with-fetch-api-and-axios.git
+cd ports-and-adapters-with-fetch-api-and-axios
 
 npm install
 ```
@@ -121,7 +121,7 @@ npm install
 ```
 
 ## Start project 
-In the directory ports-and-adapters
+In the directory ports-and-adapters-with-fetch-api-and-axios
 
 ```bash
 npm run dev
