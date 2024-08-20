@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import "./style/global.css";
+import "src/style/global.css";
 import { useApi } from "src/shared/hooks/useApi";
-import { Card } from "./components/Card/Card";
+import { Card } from "src/components/Card";
 
 function App() {
   const api = useApi();
