@@ -1,5 +1,6 @@
 import "src/components/Card/Card.css";
 import type { Card } from "src/components/Card/types";
+import { Button } from "src/components/Button";
 
 function Card(props: Card) {
   const { response, payload, onClick } = props;
@@ -25,7 +26,7 @@ function Card(props: Card) {
       </div>
 
       <div className="card-footer">
-        <button onClick={onClick}>Refresh</button>
+        <Button onClick={onClick}>Refresh</Button>
       </div>
     </div>
   );
