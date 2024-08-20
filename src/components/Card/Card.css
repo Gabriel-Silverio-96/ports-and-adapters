@@ -1,0 +1,20 @@
+.card {
+    background-color: red;
+    padding: 1.5rem;
+    border-radius: 0.8rem;
+
+    .card-content {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background-color: #282828;
+        color: white;
+        padding: 1.5rem;
+        border-radius: 0.8rem;
+        border: 0.01rem solid white;
+    }
+
+    .card-footer {
+        margin-top: 1rem;
+    }
+}
