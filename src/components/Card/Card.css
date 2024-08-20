@@ -1,17 +1,26 @@
 .card {
-    background-color: red;
+    background-color: #685002;
     padding: 1.5rem;
-    border-radius: 0.8rem;
+    border-radius: 0.5rem;
+
+    .card-header {
+        color: #fff;
+    }
 
     .card-content {
+        margin-top: 1rem;
         display: flex;
         align-items: center;
         gap: 1rem;
         background-color: #282828;
-        color: white;
+        color: #fff;
         padding: 1.5rem;
         border-radius: 0.8rem;
-        border: 0.01rem solid white;
+        border: 0.01rem solid #fff;
+
+        pre {
+            margin-top: 1rem;
+        }
     }
 
     .card-footer {
