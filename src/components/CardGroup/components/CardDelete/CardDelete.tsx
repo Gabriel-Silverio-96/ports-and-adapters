@@ -21,7 +21,9 @@ function CardDelete() {
       });
 
       setData(response.data);
-    } catch (error) {}
+    } catch (error) {
+      console.error("DELETE", error);
+    }
   };
 
   useEffect(() => {

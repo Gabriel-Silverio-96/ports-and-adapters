@@ -21,7 +21,9 @@ function CardPost() {
       });
 
       setData(response.data);
-    } catch (error) {}
+    } catch (error) {
+      console.error("POST", error);
+    }
   };
 
   useEffect(() => {

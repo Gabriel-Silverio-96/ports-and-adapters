@@ -21,7 +21,9 @@ function CardPatch() {
       });
 
       setData(response.data);
-    } catch (error) {}
+    } catch (error) {
+      console.error("PATCH", error);
+    }
   };
 
   useEffect(() => {
