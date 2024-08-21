@@ -2,7 +2,7 @@ import "src/components/Card/Card.css";
 import type { Card } from "src/components/Card/types";
 import { Button } from "src/components/Button";
 
-function Card(props: Card) {
+function Card(props: Card): JSX.Element {
   const { response, payload, onClick } = props;
 
   const isUndefinedPayload = payload === undefined;
