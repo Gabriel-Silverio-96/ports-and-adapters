@@ -13,7 +13,7 @@ function CardDelete() {
 
   const fetchData = async () => {
     try {
-      const response = await api.post("/todos", {
+      const response = await api.delete("/todos", {
         headers: {
           "Content-Something": "value",
         },
