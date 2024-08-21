@@ -1,7 +1,7 @@
 import "src/components/Card/Card.css";
 import type { Card } from "src/components/Card/types";
 import { Button } from "src/components/Button";
-import { formatDataSafely } from "./utils/format-data-safely";
+import { formatDataSafely } from "src/components/Card/utils/format-data-safely";
 
 function Card(props: Card): JSX.Element {
   const { response, payload, onClick, color = "brown", title } = props;
