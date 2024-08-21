@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import "src/style/global.css";
 import { useApi } from "src/shared/hooks/useApi";
 
 function App() {
