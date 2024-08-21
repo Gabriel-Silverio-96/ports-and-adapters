@@ -3,14 +3,14 @@ import type { Card } from "src/components/Card/types";
 import { Button } from "src/components/Button";
 
 function Card(props: Card): JSX.Element {
-  const { response, payload, onClick, color = "brown" } = props;
+  const { response, payload, onClick, color = "brown", title } = props;
 
   const isUndefinedPayload = payload === undefined;
 
   return (
     <div role="article" className={`card color-${color}`}>
       <div className="card-header">
-        <h2>Card</h2>
+        <h2>{title}</h2>
       </div>
 
       <div className="card-content">
