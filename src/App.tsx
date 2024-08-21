@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import "src/style/global.css";
 import { useApi } from "src/shared/hooks/useApi";
-import { Card } from "src/components/Card";
 
 function App() {
   const api = useApi();
@@ -23,19 +22,7 @@ function App() {
     getData();
   }, []);
 
-  return (
-    <Card
-      response={{
-        id: 1,
-        name: "John",
-      }}
-      payload={{
-        id: 2,
-        name: "Paylod",
-      }}
-      onClick={() => ""}
-    />
-  );
+  return <>Hello</>;
 }
 
 export default App;
