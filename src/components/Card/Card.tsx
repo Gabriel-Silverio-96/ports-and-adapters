@@ -6,7 +6,7 @@ import { formatDataSafely } from "src/components/Card/utils/format-data-safely";
 function Card(props: Card): JSX.Element {
   const { response, payload, onClick, color = "brown", title } = props;
 
-  const isUndefinedPayload = payload === undefined;
+  const isHiddenPayload = payload === undefined;
 
   const formattedResponse = formatDataSafely(response);
   const formattedPayload = formatDataSafely(payload);
@@ -23,7 +23,7 @@ function Card(props: Card): JSX.Element {
           <pre>{formattedResponse}</pre>
         </div>
 
-        <div className="card-payload" hidden={isUndefinedPayload}>
+        <div className="card-payload" hidden={isHiddenPayload}>
           <h5>Payload</h5>
           <pre>{formattedPayload}</pre>
         </div>
