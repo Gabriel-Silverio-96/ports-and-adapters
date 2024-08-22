@@ -6,23 +6,19 @@ function CardPatch() {
   const api = useApi();
 
   const [data, setData] = useState<unknown>({});
-  const payload = {
-    id: 4,
-    name: "John",
-  };
+  const payload = { id: 4, name: "John" };
 
   const fetchData = async () => {
     try {
       const response = await api.patch("/todos", {
-        headers: {
-          "Content-Something": "value",
-        },
+        headers: { "Content-Something": "value" },
         payload,
       });
 
       setData(response.data);
     } catch (error) {
       console.error("PATCH", error);
+      setData({});
     }
   };
 

@@ -6,23 +6,19 @@ function CardDelete() {
   const api = useApi();
 
   const [data, setData] = useState<unknown>({});
-  const payload = {
-    id: 5,
-    name: "John",
-  };
+  const payload = { id: 5, name: "John" };
 
   const fetchData = async () => {
     try {
       const response = await api.delete("/todos", {
-        headers: {
-          "Content-Something": "value",
-        },
+        headers: { "Content-Something": "value" },
         payload,
       });
 
       setData(response.data);
     } catch (error) {
       console.error("DELETE", error);
+      setData({});
     }
   };
 

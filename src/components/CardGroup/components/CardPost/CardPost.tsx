@@ -6,23 +6,19 @@ function CardPost() {
   const api = useApi();
 
   const [data, setData] = useState<unknown>({});
-  const payload = {
-    id: 3,
-    name: "John",
-  };
+  const payload = { id: 3, name: "John" };
 
   const fetchData = async () => {
     try {
       const response = await api.post("/todos", {
-        headers: {
-          "Content-Something": "value",
-        },
+        headers: { "Content-Something": "value" },
         payload,
       });
 
       setData(response.data);
     } catch (error) {
       console.error("POST", error);
+      setData({});
     }
   };
 

@@ -10,14 +10,13 @@ function CardGet() {
   const fetchData = async () => {
     try {
       const response = await api.get("/todos", {
-        headers: {
-          "Content-Something": "value",
-        },
+        headers: { "Content-Something": "value" },
       });
 
       setData(response.data);
     } catch (error) {
       console.error("GET", error);
+      setData({});
     }
   };
 
