@@ -1,5 +1,5 @@
-export interface HttpErrorResponse {
+export interface HttpErrorResponse<D = unknown> {
   status: number;
   message: string;
-  data: unknown;
+  data: D;
 }
