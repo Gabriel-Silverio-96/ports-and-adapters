@@ -127,6 +127,19 @@ In the directory ports-and-adapters-with-fetch-api-and-axios
 npm run dev
 ```
 
+## Usage 
+
+Change the adapters in the [useApi](https://github.com/Gabriel-Silverio-96/ports-and-adapters-with-fetch-api-and-axios/blob/main/src/shared/hooks/useApi/useApi.ts) custom hook
+
+![image](https://github.com/user-attachments/assets/aecdd86f-15f5-4348-bdc5-abbf5e4fa251)
+
+
+The focus of the application is not the interface, but it does provide a simple interface for interacting with HTTP methods.
+
+**Port: 5173**
+
+[Interacting with HTTP methods](https://github.com/user-attachments/assets/b09569c1-3a3b-4dc4-a7d5-e9deab84da42)
+
 ## Recommended
 
 Node: v18.20.3
